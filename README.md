@@ -29,22 +29,22 @@ $ python src/createfolders.py tmp
 $ ./de -coco_func_num 1 -prosize 20 -nfe 200000 -alg shade -pop 100 -strategy current_to_pbest_1 -p_rate 0.05 -cross bin -pop_rate -1 -arc_rate 1 -memory_size 10 -num_cheat_param_sampling 50 -out_dir tmp -run_type bbob-apl-analysis -in_file dummy.dat
 ```
 
-The first Python command creates a directory "tmp" for the procedure of the COCO framework. The second command runs a DE algorithm on the 20-dimensional 3rd function instance of f1 (Sphere). More precisely, the parameters of the DE are as follows:
+The first Python command creates a directory "tmp" for the procedure of the COCO framework. The second command runs a DE algorithm on the 20-dimensional 3rd function instance of $ f_1 $ (the Sphere function). More precisely, the parameters of the DE are as follows:
 
-- Maximum number of function evaluations (nfe): 200000 ($=10^4 \times 20$)
+- Maximum number of function evaluations (nfe): 200000 ($ =10^4 \times 20 $)
 - Parameter adaptation method (alg): SHADE
 - Population size (pop): 100
 - Mutation strategy (strategy): current-to-pbest/1
 - Pbest rate in current-to-pbest/1 (p\_rate): 0.05
 - Crossover method (cross): binomial crossover
 - Population rate (pop\_rate): -1
-    - This sets the population size to "dim $\times$ pop\_rate".
-	- "pop\rate_=-1" means that the population size is determined by "pop". 
+    - This sets the population size to "dim $ \times $ pop\_rate".
+	- "pop\rate_=-1" means that the population size is determined by the argument "pop". 
 - Archive rate (arc\_rate): 1
     - The actual archive size is pop * arc\_rate. Thus, in this example, 100 * 1 = 100.
 - Memory size in SHADE (memory\_size): 10
 - Memory size in SHADE (num\_cheat\_param\_sampling): 50
-    - This generates $50 \times 50$ parameter pairs of the scale factor F and the crossover rate C.
+    - This generates $ 50 \times 50 $ parameter pairs of the scale factor $ F $ and the crossover rate $ C $.
 - Output directory (out_dir):  tmp
 - Run type (run\_type): bbob-apl-analysis
     - This runs DE to obtain adaptive parameter landscapes.
@@ -52,16 +52,16 @@ The first Python command creates a directory "tmp" for the procedure of the COCO
 - Problem instance (in\_file): dummy.dat
 	- This determines which function instance should be used for the experiment.
 
-This command outputs many dat files in the "tmp" directory such as "parameters\_bbob-f1\_d20\_9th\_ranked\_ind\_11000th\_evals\_3th\_run.dat". This file contains $50 \times 50$ parameter pairs (F and C) and their corresponding fitness improvement values (the G1 value) of the 9th *ranked* individual in the population at 1,000 function evaluations on the 20-dimensional 3rd function instance of $f_1$.
+This command outputs many dat files in the "tmp" directory such as "parameters\_bbob-f1\_d20\_9th\_ranked\_ind\_11000th\_evals\_3th\_run.dat". This file contains $ 50 \times 50 $ parameter pairs ($ F $ and $ C $) and their corresponding fitness improvement values (the G1 value) of the 9th *ranked* individual in the population at 1,000 function evaluations on the 20-dimensional 3rd function instance of $ f_1 $.
  
-Similarly, the command to run a DE with the parameter adaptation method in jDE is as follows:
+Similarly, the following is the command to run a DE with the parameter adaptation method in jDE:
 
 ```
 $ python src/createfolders.py tmp 
 $ ./de -coco_func_num 1 -prosize 20 -nfe 200000 -alg jde -pop 100 -strategy current_to_pbest_1 -p_rate 0.05 -cross bin -pop_rate -1 -arc_rate 1 -tau_sf 0.1 -tau_cr 0.1 -num_cheat_param_sampling 50 -out_dir tmp -run_type bbob-apl-analysis -in_file dummy.dat
 ```
 
-The command to run a DE with the parameter adaptation method in JADE is also as follows:
+The following is also the command to run a DE with the parameter adaptation method in JADE:
 
 ```
 $ python src/createfolders.py tmp 
@@ -70,10 +70,10 @@ $ ./de -coco_func_num 1 -prosize 20 -nfe 200000 -alg jade -pop 100 -strategy cur
 
 ## Reproduce results presented in the GECCO paper
 
-The Ruby script "run_de.rb" automatically perform all experiments to reproduce all results presented in the GECCO paper:
+The Ruby script "run_de.rb" automatically performs all experiments to reproduce all results presented in the GECCO paper:
 
 ```
 $ ruby run_de.rb
 ```
 
-This command outputs results in the "results" directory. The Ruby script refers to files in "median_run_ids", which provide an index number of a single run with a median performance among 15 runs for each function.
+This command outputs results in the "results" directory. The Ruby script refers to a file in "median_run_ids", which provides an index number of a single run with a median performance among 15 runs for each function.
